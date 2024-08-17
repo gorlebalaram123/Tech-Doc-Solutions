@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Login Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --text-color: #333;
+            --bg-color: rgba(255, 255, 255, 0.9);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.6s ease-out 0.2s both;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out 0.4s both;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            animation: shake 0.6s ease-out;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: fadeIn 0.6s ease-out 0.6s both;
+        }
+
+        .checkbox-wrapper input {
+            margin-right: 10px;
+        }
+
+        .form-button {
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .form-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-button:active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .options-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+            animation: fadeIn 0.6s ease-out 0.8s both;
+        }
+
+        .options-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .options-links a:hover {
+            color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #777;
+            animation: fadeIn 0.6s ease-out 1s both;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 id="title" class="form-title">SLIDE LOGIN FORM</h1>
+        
+        <!-- Login Section -->
+        <div id="loginSection" class="form-content">
+            <form id="loginForm">
+                <input type="email" class="form-input" placeholder="Email Address" required aria-label="Email Address">
+                <input type="password" class="form-input" placeholder="Password" required aria-label="Password">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Keep Me Logged In</label>
+                </div>
+                <button type="submit" class="form-button">LOG IN</button>
+            </form>
+        </div>
+
+        <!-- Forgot Password Section -->
+        <div id="forgotPasswordSection" class="hidden form-content">
+            <h1 class="form-title">Forgot Password</h1>
+            <form id="forgotPasswordForm">
+                <input type="email" class="form-input" placeholder="Enter your email" required aria-label="Email Address">
+                <button type="submit" class="form-button">Send Reset Link</button>
+            </form>
+            <a href="#" class="back-link" onclick="showSection('loginSection')">Back to Login</a>
+        </div>
+
+        <!-- Registration Section -->
+        <div id="registrationSection" class="hidden form-content">
+            <h1 class="form-title">Register</h1>
+            <form id="registrationForm">
+                <input type="text" class="form-input" placeholder="Full Name" required aria-label="Full Name">
+                <input type="email" class="form-input" placeholder="Email Address" required aria-label="Email Address">
+                <input type="password" class="form-input" placeholder="Password" required aria-label="Password">
+                <button type="submit" class="form-button">Register</button>
+            </form>
+            <a href="#" class="back-link" onclick="showSection('loginSection')">Back to Login</a>
+        </div>
+
+        <div class="options-links">
+            <a href="#" onclick="showSection('forgotPasswordSection')">Forgot Password?</a>
+            <a href="#" onclick="showSection('registrationSection')">New User? Register</a>
+        </div>
+        <div class="footer-text">
+            © 2019 Slide Login Form. All rights reserved | Design by W3layouts
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('forgotPasswordSection').classList.add('hidden');
+            document.getElementById('registrationSection').classList.add('hidden');
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById('title').innerText = sectionId === 'loginSection' ? 'SLIDE LOGIN FORM' : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+            const registrationForm = document.getElementById('registrationForm');
+
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Login functionality would be implemented here.');
+            });
+
+            forgotPasswordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Password reset functionality would be implemented here.');
+            });
+
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Registration functionality would be implemented here.');
+            });
+        });
+    </script>
+</body>
+</html>

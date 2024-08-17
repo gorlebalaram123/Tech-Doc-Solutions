@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Header</title>
+    <style>
+        /* General Reset */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header Styles */
+        #header {
+            background-color: #ffffff; /* Clean white background */
+            color: #333333; /* Dark text for contrast */
+            padding: 15px 30px; /* Adjusted padding for better spacing */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #header.scrolled {
+            background-color: #007bff; /* Blue background on scroll */
+            color: #ffffff; /* White text on scroll */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly more prominent shadow */
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            flex: 1;
+        }
+
+        .logo img {
+            max-height: 60px; /* Adjust logo size */
+            vertical-align: middle;
+        }
+
+        .hamburger-menu {
+            display: none; /* Hidden by default */
+            font-size: 1.5em;
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin: 0 15px;
+        }
+
+        .main-nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .main-nav ul li a:hover,
+        .main-nav ul li.active a {
+            background-color: #007bff; /* Highlight background */
+            color: #ffffff; /* Text color on hover */
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 200px;
+            z-index: 1000;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-nav ul li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav ul li a {
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: block;
+        }
+
+        .mobile-nav ul li a:hover {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-nav {
+                display: none; /* Hide navigation on small screens */
+            }
+
+            .hamburger-menu {
+                display: block; /* Show hamburger menu on small screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                max-height: 50px; /* Smaller logo for smaller screens */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-nav ul li {
+                margin: 0 10px; /* Reduce spacing on very small screens */
+            }
+
+            .main-nav ul li a {
+                font-size: 14px; /* Smaller font size */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header" class="fixed-top">
+        <div class="container">
+            <div class="logo">
+                <a href="#intro" class="scrollto"><img src="img/logo.png" alt="Logo" class="img-fluid"></a>
+            </div>
+
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="#intro">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav><!-- .main-nav -->
+
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#intro">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav><!-- .mobile-nav -->
+
+        </div>
+    </header>
+
+    <script>
+        // Change header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle mobile menu
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const mobileNav = document.querySelector('.mobile-nav');
+
+        hamburgerMenu.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.style.display = 'block';
+            } else {
+                mobileNav.style.display = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking outside of it
+        window.addEventListener('click', (event) => {
+            if (!event.target.matches('.hamburger-menu')) {
+                if (mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    mobileNav.style.display = 'none';
+                }
+            }
+        });
+
+        // Adjust mobile menu visibility on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) {
+                mobileNav.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>
