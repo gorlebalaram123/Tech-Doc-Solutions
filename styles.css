@@ -1382,7 +1382,7 @@ body {
             color: #FF9933;
         }
 
-        .unique-footer-social-icons {
+        /* .unique-footer-social-icons {
             display: flex;
             margin-top: 20px;
         }
@@ -1399,8 +1399,54 @@ body {
 
         .unique-footer-social-icons a:hover {
             background-color: #e57d1a;
+        } */
+
+
+        .foot {
+            /* background-color: #333; */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            /* margin-left: 100px; */
+        }
+/* Fav ICONS CSS */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
         }
 
+        .social-icon {
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 10px;
+            display: inline-block;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background-color: #555;
+        }
+
+        .social-icon i {
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Specific icon colors */
+        .social-icon.facebook i {
+            color: #4267B2;
+        }
+
+        .social-icon.linkedin i {
+            color: #0e76a8;
+        }
+
+        .social-icon.instagram i {
+            color: #E4405F;
+        }
         .unique-footer-bottom {
             text-align: center;
             padding: 10px 0;
